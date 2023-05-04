@@ -1,0 +1,21 @@
+body{
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.container{
+  width: 98vw !important;
+}
+
+.menu {
+    background-color: rgb(254, 209, 0);
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+ .menu a {
+    color: black;
+  }
+
+
