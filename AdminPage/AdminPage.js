@@ -17,7 +17,6 @@ function handleShowProduct(params) {
   });
 }
 
-
 function handleShowManufacturer(params) {
   $(".ProductAdminSection").load("./ContentManufacturerAdmin.html", "data", function (response, status, request) {});
 }
@@ -136,8 +135,7 @@ function handleEdit(idEditProduct) {
   var index = listProduct.findIndex((product) => product.id == idProductUpdate);
 
 
-  // Điền thông tin của sản phẩm cần Update vào các ô Input
-  // Không điền tên ảnh vào Input File
+
   $("#IdUpdate").val(listProduct[index].id);
   $("#NameUpdate").val(listProduct[index].name);
   $("#PriceUpdate").val(listProduct[index].price);
@@ -148,12 +146,12 @@ function handleEdit(idEditProduct) {
   $("#CategoryUpdate").val(listProduct[index].categoryId);
 
 
-  // Hiển thị Modal Update Product
+
   $("#ModalUpdateProduct").modal("show");
 }
 
 
-// Hàm xử lý Reset trên Form Update
+
 function handleResetUpdate() {
   $("#NameUpdate").val("");
   $("#PriceUpdate").val("");
@@ -166,41 +164,30 @@ function handleResetUpdate() {
 }
 
 
-// Hàm xử lý khi nhấn nút Update trên Update Modal
+
 function handleUpdateProduct() {
-  // idProductUpdate
-  // Tìm index của sản phẩm cần Update trong mảng listProduct
+
   var index = listProduct.findIndex((product) => product.id == idProductUpdate);
 
 
-  // Lấy dữ liệu từ các ô Input
+
   var v_Name = $("#NameUpdate").val();
   var v_Price = $("#PriceUpdate").val();
   var v_Info = $("#InfoUpdate").val();
   var v_Detail = $("#DetailUpdate").val();
   var v_Star = $("#StarUpdate").val();
-  // Gọi hàm để lấy tên Ảnh
+
   var v_Image = getImageName($("#ImageUpdate").val());
   var v_Manufacturer = $("#ManufacturerUpdate").val();
   var v_Category = $("#CategoryUpdate").val();
 
 
-  // console.log("v_Name", v_Name);
-  // console.log("v_Price", v_Price);
-  // console.log("v_Info", v_Info);
-  // console.log("v_Detail", v_Detail);
-  // console.log("v_Star", v_Star);
-  // console.log("v_Image:", v_Image);
-  // console.log("v_Manufacturer", v_Manufacturer);
-  // console.log("v_Category", v_Category);
-  // Thực hiện Update thông tin Sản phẩm
   listProduct[index].name = v_Name;
   listProduct[index].price = v_Price;
   listProduct[index].info = v_Info;
   listProduct[index].detail = v_Detail;
   listProduct[index].ratingStar = v_Star;
-  // Kiểm tra nếu người dùng chọn lại ảnh thì mới Set dữ liệu mới
-  // TH Người dùng không chọn lại ảnh sẽ lấy ảnh hiện tại của sản phẩm
+
   if (v_Image !== null && v_Image !== "") {
     listProduct[index].imageName = v_Image;
   }
@@ -208,18 +195,14 @@ function handleUpdateProduct() {
   listProduct[index].categoryId = v_Category;
 
 
-  // Lưu lại dữ liệu vào LocalStorage
   localStorage.setItem("listProduct", JSON.stringify(listProduct));
 
 
-  // Reset Form Update
   handleResetUpdate();
 
 
-  // Đóng Modal Update
   $("#ModalUpdateProduct").modal("hide");
 
 
-  // Hiển thị lại dữ liệu sau Update
   fetchListProductAdmin();
 }
